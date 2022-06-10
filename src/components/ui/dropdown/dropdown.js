@@ -30,6 +30,9 @@ export const DropDown = forwardRef(({className, options, defaultValue, placehold
 	 */
 	useEffect(() => {
 		setValue(defaultValue);
+		if (ref?.current) {
+			ref.current.value = defaultValue;
+		}
 	}
 	, [defaultValue]);
 
@@ -76,7 +79,7 @@ export const DropDown = forwardRef(({className, options, defaultValue, placehold
 
 	return (
 		<>
-			<input type="hidden" ref={ref} value={value} />
+			<input type="hidden" ref={ref} />
 			<div 
 				className={`
 					relative 

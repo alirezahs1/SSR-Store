@@ -27,7 +27,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "nodemon server/index.js"
+    "dev:build-server": "NODE_ENV=development webpack --config server/webpack.server.js --mode=development -w",
+    "dev:start": "nodemon server-build/index.js",
+    "dev": "npm-run-all --parallel build dev:*"
   },
   "eslintConfig": {
     "extends": [
@@ -49,8 +51,12 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
+    "mini-css-extract-plugin": "^2.6.0",
     "nodemon": "^2.0.16",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.0"
+    "tailwindcss": "^3.1.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
   }
 }

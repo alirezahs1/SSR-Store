@@ -4,11 +4,13 @@ import { StaticRouter } from "react-router-dom/server";
 import { AppRoutes } from "./routes";
 
 import './assets/styles/globals.css';
+import { SSRContext } from "./contexts/ssr-context";
 
-function App({ location }) {
+function App({ location, context }) {
+	
 	return (
-		<>
-			{location ? (
+		<SSRContext.Provider value={context}>
+			{location ? ( 
 				<StaticRouter location={location}>
 					<AppRoutes />
 				</StaticRouter>
@@ -17,7 +19,7 @@ function App({ location }) {
 					<AppRoutes />
 				</BrowserRouter>
 			)}
-		</>
+		</SSRContext.Provider>
 	);
 }
 

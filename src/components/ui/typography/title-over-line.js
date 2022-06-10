@@ -6,14 +6,16 @@ export const TitleOverLine = ({className, children, component="h1", ...rest}) =>
 		<Tag 
 			className={`
 				relative
+				overflow-hidden
 				text-center
-				text-xl font-semibold
+				md:text-xl font-semibold
 				mb-8
 				text-slate-800
 			`}
 			>
 				<span className={`
 						relative
+
 						before:absolute before:content-[""]
 						before:top-1/2 before:translate-x-4 before:-translate-y-1/2
 						before:left-full before:w-20 before:h-[1px]
