@@ -1,4 +1,4 @@
-# SSR Reat Store
+# SSR React Store
 
 To run the project follow stpes below
 
@@ -11,3 +11,4 @@ This command builds both the server and the client
 
 ## 3. Open the browser
 The server now running on `localhost:8080`
+
