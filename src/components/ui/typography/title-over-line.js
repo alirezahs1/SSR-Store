@@ -1,3 +1,7 @@
+/**
+ * Just a title over a line
+ */
+
 export const TitleOverLine = ({className, children, component="h1", ...rest}) => {
 
 	const Tag = component;

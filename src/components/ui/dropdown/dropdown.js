@@ -1,5 +1,5 @@
 /**
- * Dropdown component
+ * Generic Dropdown component
  */
 
 import { forwardRef, useState, useEffect, useMemo, useRef } from 'react';

@@ -1,11 +1,30 @@
-require('ignore-styles')
+/**
+ * Build the server.
+ */
 
-require('@babel/register')({
-	ignore: [/(node_modules)/],
-	presets: [
-		'@babel/preset-env', 
-		["@babel/preset-react", {"runtime": "automatic"}]
-	]
-})
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-require('./server')
+module.exports = {
+	entry: './server/server.js',
+	target: 'node',
+	externals: [nodeExternals()],
+	plugins: [new MiniCssExtractPlugin()],
+	output: {
+		path: path.resolve('server-build'),
+		filename: 'index.js'
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				use: 'babel-loader'
+			},
+			{
+				test: /\.css$/i,
+				use: [MiniCssExtractPlugin.loader, "css-loader"],
+			},
+		]
+	}
+};

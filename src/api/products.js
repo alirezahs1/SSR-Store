@@ -1,6 +1,14 @@
 const data = require("./data.json")
 
-export function fetchProductsAPI({page=1, limit=20, ordering="most-sold", category=""}) {
+/**
+ * Fake API call to get products
+ * @param {number} page
+ * @param {number} limit
+ * @param {string} ordering
+ * @param {number} category
+ * @returns {Promise}
+ */
+export function fetchProductsAPI({page=1, limit=20, ordering="most-sold", category}) {
 
 	console.log(`fetching products page ${page} limit ${limit} ordering ${ordering} category ${category}`);
 
@@ -62,7 +70,11 @@ export function fetchProductsAPI({page=1, limit=20, ordering="most-sold", catego
 	})
 }
 
-
+/**
+ * Extracts categories from products
+ * @param {array} products
+ * @returns {array}
+ */
 function extractProductsCategories(products) {
 	let categories = [];
 	products.forEach(product => {

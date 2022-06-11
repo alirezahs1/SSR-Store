@@ -1,3 +1,7 @@
+/**
+ * Generic Label Component
+ */
+
 export const Label = ({ className, children, ...rest }) => (
 	<label className={`
 			inline-block

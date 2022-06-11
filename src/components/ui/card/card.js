@@ -1,3 +1,7 @@
+/**
+ * Generic Card Component
+ */
+
 export const Card = ({className, children, ...rest}) => {
 	return (
 		<div className={`
