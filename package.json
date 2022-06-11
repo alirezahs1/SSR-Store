@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "dev:build-server": "NODE_ENV=development webpack --config server/index.js --mode=development -w",
     "dev:start": "nodemon server-build/index.js",
-    "dev": "npm-run-all --parallel build dev:*"
+    "dev": "npm-run-all --parallel build dev:*",
+    "docs": "jsdoc -c jsdoc.conf.json"
   },
   "eslintConfig": {
     "extends": [
