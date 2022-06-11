@@ -13,9 +13,12 @@ export const InfiniteScroll = ({onNext, threshold=0, hasMore=true}) => {
 		if (isLoading || !inView || !hasMore) return;
 
 		if (typeof onNext === "function") {
-			console.log("next page");
 			setIsLoading(true);
-			onNext().then( _ => setIsLoading(false));
+			onNext().then( _ => {
+				setTimeout(() => {
+					setIsLoading(false)
+				}, 0);
+			})
 		}
 
 

@@ -26,7 +26,7 @@ export const ProductCard = ({ className, title, price, image, ...rest }) => {
 					{title}
 				</h5>
 				<div className="text-sm text-gray-500 font-bold">
-					{`${numberWithCommas(price)} تومان`}
+					{price && `${numberWithCommas(price)} تومان`}
 				</div>
 			</div>
 		</div>

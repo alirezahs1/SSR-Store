@@ -4,7 +4,7 @@ const express = require('express');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 
-import { fetchProducts } from '../src/api/products';
+import { fetchProductsAPI } from '../src/api/products';
 import App from '../src/App'
 
 const PORT = 8080
@@ -16,7 +16,7 @@ const serverRenderer = (req, res, context) => {
 		
 		if (err) {
 			console.error(err)
-			return res.status(500).send('An error occurred')
+			return res.status(500).send('Please wait while react project is being built. Try again in a few seconds.')
 		}
 
 		const html = ReactDOMServer.renderToString(
@@ -29,6 +29,10 @@ const serverRenderer = (req, res, context) => {
 					'<div id="root"></div>',
 					`<div id="root">${html}</div>`
 				)
+				.replace(
+					'</body>',
+					`<script>window.__INITIAL_DATA__ = ${JSON.stringify(context)}</script></body>`
+				)
 		)
 	})
 }
@@ -36,15 +40,19 @@ const serverRenderer = (req, res, context) => {
 
 const HomeView = async (req, res) => {
 
-	const data = await fetchProducts();
+	const data = await fetchProductsAPI(req.query);
 	
 	serverRenderer(req, res, data);
 }
-
 app.get('/', HomeView)
 
-
 app.use(express.static('./build'))
+
+
+const OtherView = async (req, res) => {
+	serverRenderer(req, res);
+}
+app.get('*', OtherView)
 
 app.listen(PORT, () => {
 	console.log(`SSR running on port ${PORT}`)
